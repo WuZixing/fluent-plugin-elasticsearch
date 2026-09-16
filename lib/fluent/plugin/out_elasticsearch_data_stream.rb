@@ -155,7 +155,7 @@ module Fluent::Plugin
       retry_operate(@max_retry_putting_template,
                     @fail_on_putting_template_retry_exceed,
                     @catch_transport_exception_on_retry) do
-        client(host).indices.create_data_stream(params)
+        client(host).indices.create_data_stream(params) unless data_stream_exist?(datastream_name, host)
       end
     end
 
